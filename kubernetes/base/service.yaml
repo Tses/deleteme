@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: deleteme
+  name: deleteme
+spec:
+
+  ports:
+  - name: 8080-tcp
+    port: 8080
+  - name: 8443-tcp
+    port: 8443
+  selector:
+    deployment: deleteme

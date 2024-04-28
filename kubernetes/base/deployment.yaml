@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+
+  labels:
+    app: deleteme
+    app.kubernetes.io/component: deleteme
+    app.kubernetes.io/instance: deleteme
+  name: deleteme
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: deleteme
+  template:
+    metadata:
+      labels:
+        deployment: deleteme
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/pipelines-triggers-sandbox-app/deleteme@sha256:4515ef3c56612f75bbbbfdbd31744bc14c86b9dc1847136da292cc178f9fe108
+        name: deleteme
+        env: 
+        - name: ENVIRONMENT
+          value: none
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
